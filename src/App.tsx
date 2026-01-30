@@ -1,10 +1,9 @@
+import Home from "./pages/Home"
 
 function App() {
 
   return (
-    <h1>
-      Welcome to Chathub!
-    </h1>
+    <Home />
   )
 }
 
