@@ -1,4 +1,22 @@
-:root{}
+:root{
+  
+  --color-primary: #0FA619;          /* Verde principal */
+  --color-background: #020817;       /* Azul escuro (fundo principal) */
+
+  --color-background-secondary: #0b1f3a;   /* Azul escuro suavizado */
+  --color-background-message-default: #0f2e1c; /* Verde escuro suave */
+  --color-background-message-reply: #0b2545;   /* Azul médio */
+
+  --color-border-primary: #132f4c;   /* Azul acinzentado */
+  --color-border-secondary: #0FA619; /* Verde principal */
+
+  --color-text-primary: #ffffff;     /* Texto principal */
+  --color-text-secondary: #7de6a0;   /* Verde claro para destaque */
+
+  --color-error: #ff4d4f;
+}
+
+
 
 body {
   margin: 0;

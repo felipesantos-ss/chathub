@@ -1,6 +1,8 @@
+import Header from "../components/Hearder"
+
 const Home = () => {
     return(
-        <h1>Welcome to chathub!</h1>
+        <Header />
     )
 }
 
