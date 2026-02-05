@@ -16,8 +16,11 @@
   --color-error: #ff4d4f;
 }
 
-
-
 body {
   margin: 0;
+}
+
+.custom-input:focus,
+.custom-input:hover {
+  border-color: var(--color-border-secondary);
 }
