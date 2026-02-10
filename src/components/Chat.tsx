@@ -1,7 +1,8 @@
-import { Button, Flex, Grid, Input, message, Typography } from "antd";
+import { Button, Flex, Grid, Input, Typography } from "antd";
 import { useState } from "react";
 import { SendOutlined } from "@ant-design/icons";
 import type { ChatMessage } from "../interfaces";
+import Content from "./Content";
 
 const Chat = () => {
     const [text, setText] = useState<string>("");
@@ -23,6 +24,7 @@ const Chat = () => {
             timestamp: Date.now()
         }
         setText("");
+        console.log(message);
     }
     return(
         <Flex 
@@ -34,12 +36,34 @@ const Chat = () => {
         gap={4}
         vertical
     >
+       
         <Typography.Title 
             level={4} style={{ margin: 0, color: "var(--color-text-primary)", textAlign: "center"}}>
                 Bem Vindo ao Chathub
         </Typography.Title>
 
-            <Flex vertical style={{ background: "var(--color-background-secondary)", height: "80vh", width: screens.xs ? "80vw": "50vw", padding: 16}}>
+            <Flex style={{ 
+                        background: "var(--color-background-secondary)", 
+                        height: "80vh", 
+                        width: screens.xs ? "80vw": "50vw", 
+                        padding: 16,
+                        borderRadius: 8
+                        }}
+                        vertical
+                        gap={16}
+            >
+
+            <Flex 
+                style={{ flex: 1, 
+                overflowY: "auto", 
+                border: "1px solid var(--color-border-secondary)", 
+                borderRadius: 6, 
+                padding: 12, 
+                }}
+                className="chat-scroll"
+            >
+                    <Content />  
+            </Flex>
                 <Flex gap={8}>
                     <Input placeholder="Digite sua mensagem..." 
                         value={text}
