@@ -1,4 +1,5 @@
-import { Flex, List, Space, Typography, Avatar } from "antd"
+import { Flex, List, Space, Typography, Avatar, Dropdown } from "antd"
+import { Ellipsis, MessageCircleReply, MessageCircleX } from "lucide-react";
 
 const Content = () => {
     const user = {
@@ -46,8 +47,34 @@ const Content = () => {
                 width: "100%",
             }}
             renderItem={(msg) => {
+                const menuItems = [];
+                if(msg.userId !== user.uid){
+                    menuItems.push({
+                        key: "reply",
+                        label:  <Flex align="center" gap={2} style={{cursor: "pointer"}}>
+                                    <MessageCircleReply size={20} color="var(--color-primary)"/>
+                                    <Typography style={{color: "var(--color-text-secondary)"}}>Responder</Typography>
+                                </Flex>
+                    })
+                }
+
+                if(msg.userId === user.uid){
+                    menuItems.push({
+                        key: "delete",
+                        label:  <Flex align="center" gap={2}>
+                                    <MessageCircleX size={20} color="var(--color-error)"/>
+                                    <Typography style={{cursor: "pointer", color: "var(--color-error)"}}>Excluir</Typography>
+                                </Flex>
+                    })
+                }
                 return(
-                    <List.Item style={{ display:"flex", justifyContent: (msg.userId === user?.uid) ? "flex-end" : "flex-start" }}>
+                    <List.Item style={{ display:"flex", justifyContent: (msg.userId === user?.uid) ? "flex-end" : "flex-start"}}>
+                        <div style={{ position:"relative", display:"inline-block", maxWidth:"90%" }}>
+                            <Dropdown menu={{items: menuItems}} trigger={["click"]} placement="bottomRight" arrow>
+                                <div style={{position:"absolute", top:5, right:7, zIndex: 1, cursor:"pointer"} }>
+                                    {user && <Ellipsis size={18} color="var(--color-primary)"/>}
+                                </div>
+                            </Dropdown>
                         <Space
                             direction="vertical"
                             align={msg.userId === user.uid ? "end" : "start"}
@@ -116,6 +143,7 @@ const Content = () => {
                                 </Typography.Text>
                             </Space>
                         </Space>
+                        </div>
                     </List.Item>
                 );
             }}
