@@ -1,5 +1,6 @@
 import { Flex, List, Space, Typography, Avatar, Dropdown } from "antd"
 import { Ellipsis, MessageCircleReply, MessageCircleX } from "lucide-react";
+import { use, useEffect, useRef } from "react";
 
 const Content = () => {
     const user = {
@@ -39,6 +40,10 @@ const Content = () => {
             timestamp: new Date(),
         }
     ]
+    const endRef = useRef<HTMLDivElement>(null);
+    useEffect(() => { 
+        endRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
     return(
         <List 
             dataSource={messages}
@@ -148,6 +153,7 @@ const Content = () => {
                 );
             }}
         >
+            <div ref={endRef}/>
         </List>
     );
 }
