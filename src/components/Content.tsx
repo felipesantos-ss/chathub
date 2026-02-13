@@ -1,6 +1,7 @@
 import { Flex, List, Space, Typography, Avatar, Dropdown } from "antd"
-import { Ellipsis, MessageCircleReply, MessageCircleX } from "lucide-react";
-import { use, useEffect, useRef } from "react";
+import { Ellipsis, MessageCircleX } from "lucide-react";
+import { useEffect, useRef } from "react";
+import ReplyModal from "./ReplyModal";
 
 const Content = () => {
     const user = {
@@ -56,10 +57,7 @@ const Content = () => {
                 if(msg.userId !== user.uid){
                     menuItems.push({
                         key: "reply",
-                        label:  <Flex align="center" gap={2} style={{cursor: "pointer"}}>
-                                    <MessageCircleReply size={20} color="var(--color-primary)"/>
-                                    <Typography style={{color: "var(--color-text-secondary)"}}>Responder</Typography>
-                                </Flex>
+                        label:  <ReplyModal/>
                     })
                 }
 
