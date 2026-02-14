@@ -1,7 +1,8 @@
 import { Flex, List, Space, Typography, Avatar, Dropdown } from "antd"
-import { Ellipsis, MessageCircleX } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import { useEffect, useRef } from "react";
 import ReplyModal from "./ReplyModal";
+import DeleteModal from "./DeleteModal";
 
 const Content = () => {
     const user = {
@@ -41,6 +42,10 @@ const Content = () => {
             timestamp: new Date(),
         }
     ]
+
+    const handleDelete = () => {
+        console.log("Mensagem deletada");
+    }
     const endRef = useRef<HTMLDivElement>(null);
     useEffect(() => { 
         endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -64,11 +69,8 @@ const Content = () => {
                 if(msg.userId === user.uid){
                     menuItems.push({
                         key: "delete",
-                        label:  <Flex align="center" gap={2}>
-                                    <MessageCircleX size={20} color="var(--color-error)"/>
-                                    <Typography style={{cursor: "pointer", color: "var(--color-error)"}}>Excluir</Typography>
-                                </Flex>
-                    })
+                        label: <DeleteModal onConfirm={handleDelete} message=""/>
+                    }) 
                 }
                 return(
                     <List.Item style={{ display:"flex", justifyContent: (msg.userId === user?.uid) ? "flex-end" : "flex-start"}}>
