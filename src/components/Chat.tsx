@@ -38,7 +38,7 @@ const Chat = () => {
     >
        
         <Typography.Title 
-            level={4} style={{ margin: 0, color: "var(--color-text-primary)", textAlign: "center"}}>
+            level={3} style={{ margin: 0, color: "var(--color-text-primary)", textAlign: "center"}}>
                 Bem Vindo ao Chathub
         </Typography.Title>
 
