@@ -76,7 +76,7 @@ const Chat = () => {
                         icon = {<SendOutlined/>} 
                         disabled={!user}
                         onClick={sendMessage}
-                        style={{ color: "var(--color-text-secondary)", 
+                        style={{ color: "var(--color-primary)", 
                         borderColor: "var(--color-border-secondary)" }} />
                 </Flex>
             </Flex>
