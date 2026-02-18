@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# ChatHub: Aplicação de Chat em Tempo Real
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Visão Geral
 
-Currently, two official plugins are available:
+O ChatHub é uma aplicação de chat em tempo real, moderna e responsiva, desenvolvida com React e TypeScript. Utiliza o Firebase Realtime Database para sincronização automática e em tempo real das mensagens entre todos os usuários conectados, sem necessidade de recarregamento da página. A interface é construída com Ant Design e Lucide React, proporcionando uma experiência intuitiva, rápida e visualmente agradável.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## React Compiler
+*   **Autenticação de Usuário:** Login seguro via Google (Firebase Authentication).
+*   **Mensagens em Tempo Real:** Troca instantânea de mensagens entre usuários.
+*   **Respostas a Mensagens:** Capacidade de responder a mensagens específicas, criando um fluxo de conversa mais organizado.
+*   **Exclusão de Mensagens:** Usuários podem excluir suas próprias mensagens.
+*   **Interface Responsiva:** Design adaptável para diferentes tamanhos de tela, garantindo uma ótima experiência em dispositivos móveis e desktops.
+*   **Interface Moderna:** Utilização de componentes do Ant Design para uma UI limpa e profissional.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧠 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+| Camada        | Tecnologia                         |
+|---------------|------------------------------------|
+| Frontend      | React, TypeScript                  |
+| UI / Componentes | Ant Design                      |
+| Backend       | Firebase (Realtime Database, Authentication)|
+| Ferramentas   | Vite (bundler)                     |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Estrutura do Projeto
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+A estrutura de diretórios do projeto segue uma organização modular para facilitar o desenvolvimento e a manutenção:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+chathub/
+├── public/
+│   └── chathub-logo.png
+├── src/
+│   ├── components/       # Componentes reutilizáveis da UI
+│   │   ├── Chat.tsx
+│   │   ├── Content.tsx
+│   │   ├── DeleteModal.tsx
+│   │   ├── Header.tsx
+│   │   └── ReplyModal.tsx
+│   ├── contexts/         # Contextos React para gerenciamento de estado global
+│   │   └── AuthContext.tsx
+│   ├── hooks/            # Hooks personalizados para lógica reutilizável
+│   │   └── useAuth.tsx
+│   ├── interfaces/       # Definições de tipos TypeScript
+│   │   └── index.ts
+│   ├── pages/            # Páginas principais da aplicação
+│   │   └── Home.tsx
+│   ├── services/         # Serviços para interação com o Firebase
+│   │   ├── AuthService.ts
+│   │   └── ChatService.ts
+│   ├── utils/            # Funções utilitárias
+│   │   └── formatTimeStamp.ts
+│   ├── App.tsx           # Componente principal da aplicação
+│   ├── firebase.ts       # Configuração do Firebase
+│   ├── index.css         # Estilos globais
+│   └── main.tsx          # Ponto de entrada da aplicação
+├── .eslintrc.cjs
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── ...
 ```
+## 🚀 **Acessar a aplicação:** [Abrir ChatHub](https://chathub-76512.web.app/)
