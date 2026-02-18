@@ -1,4 +1,4 @@
-import { onValue, push, ref } from "firebase/database";
+import { onValue, push, ref, remove } from "firebase/database";
 import { db } from "../firebase";
 import type { ChatMessage } from "../interfaces";
 
@@ -23,4 +23,12 @@ export const onMessageUpdate = (callback : (message: ChatMessage[]) => void) => 
         }
         callback(messagelist);
     });
+}
+
+export const deleteMessage = async (id: string) => {
+    try {
+        await remove(ref(db, `messages/${id}`));
+    } catch (error) {
+        console.error('Erro ao deletar mensagem', error);
+    }
 }

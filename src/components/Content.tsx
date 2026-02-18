@@ -3,7 +3,7 @@ import { Ellipsis } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import ReplyModal from "./ReplyModal";
 import DeleteModal from "./DeleteModal";
-import { onMessageUpdate } from "../services/ChatService";
+import { deleteMessage, onMessageUpdate } from "../services/ChatService";
 import { useAuth } from "../hooks/useAuth";
 import type { ChatMessage } from "../interfaces";
 import { formatTimeStamp } from "../utils/formatTimeStamp";
@@ -12,8 +12,8 @@ const Content = () => {
     const { user } = useAuth();
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [loading, setLoading] = useState(true);
-    const handleDelete = () => {
-        console.log("Mensagem deletada");
+    const handleDelete = async (id: string) => {
+        await deleteMessage(id);
     }
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const Content = () => {
                 if(msg.userId === user?.uid){
                     menuItems.push({
                         key: "delete",
-                        label: <DeleteModal onConfirm={handleDelete} message=""/>
+                        label: <DeleteModal onConfirm={() => handleDelete(msg.id)} message=""/>
                     }) 
                 }
                 return(
