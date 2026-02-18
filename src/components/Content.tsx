@@ -43,7 +43,7 @@ const Content = () => {
                 if(msg.userId !== user?.uid){
                     menuItems.push({
                         key: "reply",
-                        label:  <ReplyModal/>
+                        label:  <ReplyModal msg={msg}/>
                     })
                 }
 

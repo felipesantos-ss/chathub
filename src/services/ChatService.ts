@@ -32,3 +32,11 @@ export const deleteMessage = async (id: string) => {
         console.error('Erro ao deletar mensagem', error);
     }
 }
+
+export const replyMessage = async (replyMessage: Omit<ChatMessage, 'id'>, replyedMessage: ChatMessage) => {
+    try {
+        await push(ref(db, "messages"), { ...replyMessage, replyTo: replyedMessage });
+    } catch (error) {
+        console.error('Erro ao responder mensagem', error);
+    }
+}
