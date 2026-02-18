@@ -1,51 +1,30 @@
 import { Flex, List, Space, Typography, Avatar, Dropdown } from "antd"
 import { Ellipsis } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReplyModal from "./ReplyModal";
 import DeleteModal from "./DeleteModal";
+import { onMessageUpdate } from "../services/ChatService";
+import { useAuth } from "../hooks/useAuth";
+import type { ChatMessage } from "../interfaces";
 
 const Content = () => {
-    const user = {
-        uid:'01'
-    }
-    const messages = [
-        {
-            id: '01',
-            text: "Oi",
-            userId: "01",
-            userName: "Felipe",
-            userPhotoUrl: "https://github.com/felipesantos-ss.png",
-            timestamp: new Date(),
-        },
-        {
-            id: '02',
-            text: "Olá!",
-            userId: "02",
-            userName: "Santos",
-            userPhotoUrl: "https://github.com/felipesantos-ss.png",
-            timestamp: new Date(),
-            replyTo: {
-                id: '01',
-                text: "Olá",
-                userId: "01",
-                userName: "Felipe",
-                userPhotoUrl: "https://github.com/felipesantos-ss.png",
-                timestamp: new Date(),
-            }
-        },
-        {
-            id: '03',
-            text: "Testando",
-            userId: "01",
-            userName: "Felipe",
-            userPhotoUrl: "https://github.com/felipesantos-ss.png",
-            timestamp: new Date(),
-        }
-    ]
-
+    const { user } = useAuth();
+    const [messages, setMessages] = useState<ChatMessage[]>([]);
+    const [loading, setLoading] = useState(true);
     const handleDelete = () => {
         console.log("Mensagem deletada");
     }
+
+    useEffect(() => {
+        setLoading(true);
+        const unsubscribe = onMessageUpdate((msg) => {
+            setMessages(msg);
+            setLoading(false);
+        });
+        return () => unsubscribe();
+    
+    }, []);
+
     const endRef = useRef<HTMLDivElement>(null);
     useEffect(() => { 
         endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -54,19 +33,20 @@ const Content = () => {
         <List 
             dataSource={messages}
             split={false}
+            loading={loading}
             style={{ 
                 width: "100%",
             }}
             renderItem={(msg) => {
                 const menuItems = [];
-                if(msg.userId !== user.uid){
+                if(msg.userId !== user?.uid){
                     menuItems.push({
                         key: "reply",
                         label:  <ReplyModal/>
                     })
                 }
 
-                if(msg.userId === user.uid){
+                if(msg.userId === user?.uid){
                     menuItems.push({
                         key: "delete",
                         label: <DeleteModal onConfirm={handleDelete} message=""/>
@@ -82,7 +62,7 @@ const Content = () => {
                             </Dropdown>
                         <Space
                             direction="vertical"
-                            align={msg.userId === user.uid ? "end" : "start"}
+                            align={msg.userId === user?.uid ? "end" : "start"}
                             style={{ 
                                 background: "var(--color-background-message-default)",
                                 padding: "12px 12px",

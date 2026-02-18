@@ -6,7 +6,6 @@ import { AuthService } from "../services/AuthService";
 const Header = () => {
     const { user } = useAuth();
     const authService = new AuthService();
-    console.log("User:", user);
     return (    
         <Flex 
             align="center" 
