@@ -6,6 +6,7 @@ import DeleteModal from "./DeleteModal";
 import { onMessageUpdate } from "../services/ChatService";
 import { useAuth } from "../hooks/useAuth";
 import type { ChatMessage } from "../interfaces";
+import { formatTimeStamp } from "../utils/formatTimeStamp";
 
 const Content = () => {
     const { user } = useAuth();
@@ -110,7 +111,7 @@ const Content = () => {
                                                     color: "var(--color-text-secondary)"
                                                 }}
                                             >
-                                                {msg.replyTo.userName} · {Date(msg.replyTo.timestamp)}
+                                                {msg.replyTo.userName} · {formatTimeStamp(msg.replyTo.timestamp)}
                                             </Typography.Text>
                                         </Flex>
                                     </Flex>
@@ -124,7 +125,7 @@ const Content = () => {
                                             color: "var(--color-text-secondary)"
                                             }}
                                 >
-                                {msg.userName} · {Date(msg.timestamp)}
+                                {msg.userName} · {formatTimeStamp(msg.timestamp)}
                                 </Typography.Text>
                             </Space>
                         </Space>
