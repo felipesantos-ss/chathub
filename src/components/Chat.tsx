@@ -3,26 +3,26 @@ import { useState } from "react";
 import { SendOutlined } from "@ant-design/icons";
 import type { ChatMessage } from "../interfaces";
 import Content from "./Content";
+import { useAuth } from "../hooks/useAuth";
+import { pushMessage } from "../services/ChatService";
+import { serverTimestamp } from "firebase/database";
 
 const Chat = () => {
     const [text, setText] = useState<string>("");
-    const user = {
-        uid: "123",
-        displayName: "Felipe",
-        photoURL: ""
-    }
+    const { user } = useAuth();
     const{ useBreakpoint } = Grid;
     const screens = useBreakpoint();
-    const sendMessage = () => {
-        if(!text.trim) return;
+    const sendMessage = async() => {
+        if(!text.trim()) return;
         if(!user) return;
         const message: Omit<ChatMessage, 'id'> = {
             text,
             userId: user.uid,
-            userName: user.displayName,
-            userPhotoUrl: user.photoURL,
-            timestamp: Date.now()
+            userName: user.displayName?.split(" ")[0] ?? "",
+            userPhotoUrl: user.photoURL ?? "",
+            timestamp: serverTimestamp()
         }
+        await pushMessage(message);
         setText("");
         console.log(message);
     }
