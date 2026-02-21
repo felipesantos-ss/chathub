@@ -12,6 +12,8 @@
 
   --color-text-primary: #ffffff;     /* Texto principal */
   --color-text-secondary: #7de6a0;   /* Verde claro para destaque */
+  --color-placeholder: #9ca3af;      /* Cinza para placeholder */
+  --color-text: #000000;      /* Texto Preto */
 
   --color-error: #ff4d4f;
 }
@@ -20,12 +22,24 @@ body {
   margin: 0;
 }
 
+.custom-input {
+  border: 2px solid var(--color-border-secondary) !important;
+  box-shadow: 0 0 0 1px rgba(34,197,94,0.15) !important;
+  transition: all 0.2s ease;
+}
+
 .custom-input:focus,
-.custom-input:hover {
-  border-color: var(--color-border-secondary);
+.custom-input:hover,
+.custom-input.ant-input-focused {
+  box-shadow: 0 0 0 2px var(--color-primary) !important;
 }
 
 .chat-scroll {
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary) var(--color-background-secondary);
 }
+
+.custom-input::placeholder {
+  color: var(--color-placeholder) !important;
+}
+

@@ -1,4 +1,4 @@
-import { Button, Flex, Grid, Input, Typography } from "antd";
+import { Button, Flex, Input } from "antd";
 import { useState } from "react";
 import { SendOutlined } from "@ant-design/icons";
 import type { ChatMessage } from "../interfaces";
@@ -10,8 +10,6 @@ import { serverTimestamp } from "firebase/database";
 const Chat = () => {
     const [text, setText] = useState<string>("");
     const { user } = useAuth();
-    const{ useBreakpoint } = Grid;
-    const screens = useBreakpoint();
     const sendMessage = async() => {
         if(!text.trim()) return;
         if(!user) return;
@@ -27,62 +25,87 @@ const Chat = () => {
         console.log(message);
     }
     return(
-        <Flex 
-        align="center" 
-        justify="center" 
-        style={{ height: "100vh",
-        background: "var(--color-background)"
-        }}
-        gap={4}
+        <Flex
         vertical
-    >
-       
-        <Typography.Title 
-            level={3} style={{ margin: 0, color: "var(--color-text-primary)", textAlign: "center"}}>
-                Bem Vindo ao Chathub
-        </Typography.Title>
+        style={{
+            height: "100vh",
+            background: "var(--color-background)",
+        }}
+        >
 
-            <Flex style={{ 
-                        background: "var(--color-background-secondary)", 
-                        height: "80vh", 
-                        width: screens.xs ? "80vw": "50vw", 
-                        padding: 16,
-                        borderRadius: 8
-                        }}
-                        vertical
-                        gap={16}
+            <Flex
+                vertical
+                style={{
+                    flex: 1,
+                    width: "100%",
+                    maxWidth: "720px",
+                    margin: "20px auto",
+                    background: "var(--color-background-secondary)",
+                    borderRadius: 18,
+                    padding: 24,
+                    boxShadow: "0 20px 40px var(--color-background-primary)",
+                }}
             >
 
             <Flex 
-                style={{ flex: 1, 
-                overflowY: "auto", 
-                border: "1px solid var(--color-border-secondary)", 
-                borderRadius: 6, 
-                padding: 12, 
+                style={{ 
+                    flex: 1,
+                    overflowY: "auto",
+                    paddingRight: 8
                 }}
                 className="chat-scroll"
             >
                     <Content />  
             </Flex>
-                <Flex gap={8}>
-                    <Input placeholder="Digite sua mensagem..." 
+                <Flex
+                    gap={12}
+                    align="center"
+                    style={{
+                        marginTop: 16,
+                        paddingTop: 16,
+                        borderTop: "1px solid var(--color-border-primary)"
+                    }}
+    >
+                    <Input
+                        variant="borderless"
+                        placeholder="Digite sua mensagem..."
                         value={text}
                         disabled={!user}
                         onChange={e => setText(e.target.value)}
-                        onPressEnter={sendMessage} 
-                        style={{ color: "var(--color-text-secondary)" }}
-                        className="custom-input"/>
-                    <Button 
-                        icon = {<SendOutlined/>} 
-                        disabled={!user}
-                        onClick={sendMessage}
-                        style={{ color: "var(--color-primary)", 
-                        borderColor: "var(--color-border-secondary)" }} />
+                        onPressEnter={sendMessage}
+                        style={{
+                            backgroundColor: "var(--color-background-secondary)",
+                            color: "var(--color-text-primary)",
+                            backdropFilter: "blur(6px)",
+                            padding: "10px 20px",
+                            borderRadius: 10,
+                            height: 44
+                        }}
+                        className="custom-input"
+                    />
+                    <Button
+                    icon={<SendOutlined />}
+                    disabled={!user}
+                    onClick={sendMessage}
+                    style={{
+                        color: "var(--color-text-primary)",
+                        border: "2px solid var(--color-border-secondary)",
+                        background: "var(--color-background-secondary)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: "50%",
+                        width: 44,
+                        height: 44,
+                        padding: 0
+                    }}
+                    />
                 </Flex>
             </Flex>
     </Flex>
-    )
-    
+    );
 }
 
 export default Chat
+
+

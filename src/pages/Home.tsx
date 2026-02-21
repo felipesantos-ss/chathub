@@ -1,6 +1,6 @@
 import { Flex } from "antd";
 import Chat from "../components/Chat";
-import Header from "../components/Hearder"
+import Header from "../components/Header"
 
 const Home = () => {
     return(
