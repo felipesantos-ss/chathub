@@ -39,7 +39,7 @@ const Content = () => {
             style={{ width: "100%" }}
             renderItem={(msg) => {
                 const isOwn = msg.userId === user?.uid;
-                const menuItems = [];
+                const menuItems: any[] = [];
                 
                 if(!isOwn){
                     menuItems.push({
