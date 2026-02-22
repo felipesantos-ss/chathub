@@ -1,4 +1,4 @@
-import { Button, Flex, Input } from "antd";
+import { Button, Flex, Input, Typography } from "antd";
 import { useState } from "react";
 import { SendOutlined } from "@ant-design/icons";
 import type { ChatMessage } from "../interfaces";
@@ -102,6 +102,37 @@ const Chat = () => {
                     />
                 </Flex>
             </Flex>
+        <Flex 
+            justify="center" 
+            style={{ 
+                padding: '16px 0 8px 0', 
+                borderTop: '1px solid var(--color-border-primary)', 
+                marginTop: '8px'
+        }}
+        >
+        <a 
+            href="https://github.com/felipesantos-ss" 
+            target="_blank" 
+            rel="noreferrer" 
+            style={{ textDecoration: 'none' }}
+        > 
+            <Typography.Text 
+                style={{ 
+                    fontSize: '11px', 
+                    letterSpacing: '1.5px', 
+                    textTransform: 'uppercase', 
+                    color: 'var(--color-text-primary)', 
+                    fontWeight: 500
+                }}
+            >
+                <span style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Felipe Santos</span> 
+                <span style={{ margin: '0 8px', opacity: 0.3 }}>|</span> 
+                Full Stack Developer
+            </Typography.Text>
+        </a>
+
+        </Flex>
+
     </Flex>
     );
 }
