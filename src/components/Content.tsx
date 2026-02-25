@@ -36,7 +36,7 @@ const Content = () => {
             dataSource={messages}
             split={false}
             loading={loading}
-            style={{ width: "100%" }}
+            style={{ width: "100%", display: "flex", flexDirection: "column", height: "100%" }}
             renderItem={(msg) => {
                 const isOwn = msg.userId === user?.uid;
                 const menuItems: any[] = [];
@@ -58,7 +58,8 @@ const Content = () => {
                         display:"flex", 
                         justifyContent: isOwn ? "flex-end" : "flex-start",
                         padding: "8px 0",
-                        border: "none"
+                        border: "none",
+                        flexShrink: 0
                     }}>
                         <Flex 
                             vertical 
@@ -89,7 +90,6 @@ const Content = () => {
                                         position: "relative",
                                         border: isOwn ? "none" : "1px solid var(--color-border)"
                                     }}>
-                                        {/* Reply Content */}
                                         {msg.replyTo && (
                                             <div style={{ 
                                                 background: "var(--color-background-secondary)",
@@ -112,7 +112,6 @@ const Content = () => {
                                             {msg.text}
                                         </Typography.Text>
 
-                                        {/* Dropdown Actions */}
                                         {user && (
                                             <div style={{ position: "absolute", top: "4px", right: isOwn ? "auto" : "-24px", left: isOwn ? "-24px" : "auto" }}>
                                                 <Dropdown menu={{items: menuItems}} trigger={["click"]} placement="bottom" arrow>

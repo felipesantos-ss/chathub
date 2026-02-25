@@ -18,6 +18,14 @@
   --color-error: #ff4d4f;
 }
 
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+}
+
 body {
   margin: 0;
 }
@@ -37,9 +45,35 @@ body {
 .chat-scroll {
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary) var(--color-background-secondary);
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1;
+}
+
+.chat-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-scroll::-webkit-scrollbar-track {
+  background: var(--color-background-secondary);
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 10px;
+}
+
+.chat-scroll .ant-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.chat-scroll .ant-list-item {
+  flex-shrink: 0;
+  padding: 8px 0;
 }
 
 .custom-input::placeholder {
   color: var(--color-placeholder) !important;
 }
-

@@ -28,8 +28,10 @@ const Chat = () => {
         <Flex
         vertical
         style={{
-            height: "100vh",
+            flex: 1,
             background: "var(--color-background)",
+            overflow: "hidden",
+            padding: "20px 0"
         }}
         >
 
@@ -39,19 +41,24 @@ const Chat = () => {
                     flex: 1,
                     width: "100%",
                     maxWidth: "720px",
-                    margin: "20px auto",
+                    margin: "0 auto",
                     background: "var(--color-background-secondary)",
                     borderRadius: 18,
-                    padding: 24,
+                    padding: "24px 24px 16px 24px",
                     boxShadow: "0 20px 40px var(--color-background-primary)",
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: 0, 
                 }}
             >
 
             <Flex 
+                vertical
                 style={{ 
                     flex: 1,
                     overflowY: "auto",
-                    paddingRight: 8
+                    paddingRight: 8,
+                    minHeight: 0,
                 }}
                 className="chat-scroll"
             >
@@ -63,7 +70,8 @@ const Chat = () => {
                     style={{
                         marginTop: 16,
                         paddingTop: 16,
-                        borderTop: "1px solid var(--color-border-primary)"
+                        borderTop: "1px solid var(--color-border-primary)",
+                        flexShrink: 0 
                     }}
     >
                     <Input
@@ -107,7 +115,8 @@ const Chat = () => {
             style={{ 
                 padding: '16px 0 8px 0', 
                 borderTop: '1px solid var(--color-border-primary)', 
-                marginTop: '8px'
+                marginTop: '8px',
+                flexShrink: 0
         }}
         >
         <a 
@@ -138,5 +147,3 @@ const Chat = () => {
 }
 
 export default Chat
-
-
