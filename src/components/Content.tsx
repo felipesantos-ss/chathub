@@ -79,7 +79,7 @@ const Content = () => {
                             )}
 
                             <Flex align="start" gap={8} style={{ flexDirection: isOwn ? "row-reverse" : "row" }}>
-                                <Avatar size={32} src={msg.userPhotoUrl} style={{ marginTop: "4px", border: "1px solid var(--color-border-primary)" }} />
+                                <Avatar size={32} src={msg.userPhotoUrl} style={{ marginTop: "4px", border: "1px solid var(--color-border-primary)", flexShrink: 0 }} />
                                 
                                 <Flex vertical align={isOwn ? "end" : "start"}>
                                     <div style={{ 
