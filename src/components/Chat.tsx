@@ -31,8 +31,8 @@ const Chat = () => {
             flex: 1,
             background: "var(--color-background)",
             overflow: "hidden",
-            padding: "20px 0"
         }}
+        className="chat-outer"
         >
 
             <Flex
@@ -43,13 +43,13 @@ const Chat = () => {
                     maxWidth: "720px",
                     margin: "0 auto",
                     background: "var(--color-background-secondary)",
-                    borderRadius: 18,
-                    padding: "24px 24px 16px 24px",
                     boxShadow: "0 20px 40px var(--color-background-primary)",
                     display: "flex",
                     flexDirection: "column",
-                    minHeight: 0, 
+                    minHeight: 0,
+                    overflow: "hidden",
                 }}
+                className="chat-container"
             >
 
             <Flex 
@@ -82,6 +82,8 @@ const Chat = () => {
                         onChange={e => setText(e.target.value)}
                         onPressEnter={sendMessage}
                         style={{
+                            flex: 1,
+                            minWidth: 0,
                             backgroundColor: "var(--color-background-secondary)",
                             color: "var(--color-text-primary)",
                             backdropFilter: "blur(6px)",

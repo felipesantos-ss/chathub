@@ -108,7 +108,7 @@ const Content = () => {
                                             </div>
                                         )}
 
-                                        <Typography.Text style={{ color: "inherit", fontSize: "14px", lineHeight: "1.5" }}>
+                                        <Typography.Text style={{ color: "inherit", fontSize: "14px", lineHeight: "1.5", wordBreak: "break-word", overflowWrap: "anywhere" }}>
                                             {msg.text}
                                         </Typography.Text>
 

@@ -4,7 +4,7 @@ import Header from "../components/Header"
 
 const Home = () => {
     return(
-        <Flex style={{ height: "100vh", overflow: "hidden" }} vertical >
+        <Flex style={{ height: "100%", overflow: "hidden" }} vertical >
             <Header />
             <Chat />
         </Flex>
