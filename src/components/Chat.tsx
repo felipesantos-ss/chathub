@@ -97,6 +97,7 @@ const Chat = () => {
                     icon={<SendOutlined />}
                     disabled={!user}
                     onClick={sendMessage}
+                    className="custom-input"
                     style={{
                         color: "var(--color-text-primary)",
                         border: "2px solid var(--color-border-secondary)",
